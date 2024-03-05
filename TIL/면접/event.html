@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .depth1 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background-color: red;
+}
+
+.depth2 {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: green;
+}
+
+.depth3 {
+  font-size: 15pt;
+  color: white;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+}
+</style>
+<body>
+    <div class="depth1" onclick="alert(this.className)">
+        <div class="depth2" onclick="alert(this.className); event.stopPropagation()">
+            <div class="depth3" onclick="alert(this.className); event.stopPropagation()">
+                depth3
+            </div>
+        </div>
+    </div>
+</body>
+</html>
