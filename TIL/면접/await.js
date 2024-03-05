@@ -31,3 +31,14 @@
 //     console.log(resultItems);
 // }
 
+async function logTodoTitle() {
+    try {
+        var user = await fetchUser();
+        if (user.id === 1) {
+            var todo = await fetchTodo();
+            console.log(todo.title);
+        }
+    } catch(error) {
+        console.log(error);
+    }
+}
