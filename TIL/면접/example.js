@@ -1,17 +1,17 @@
-// var p = new Promise((res, rej) => {
-//     setTimeout(() => {
-//         res('a')
-//     }, 1000)
-// })
+let p = new Promise((res, rej) => {
+    setTimeout(() => {
+        res('a')
+    }, 1000)
+})
 
-// let answer = p.then(res => {
-//     return res;
-// })
+let answer = p.then(res => {
+    return res;
+})
 
-// answer.then(res => {
-//     console.log(res)
-// })
-// console.log(answer)
+answer.then(res => {
+    console.log(res)
+})
+console.log(answer)
 
 // function async(callback) {
 //     var result;
@@ -45,17 +45,17 @@
 //     })
 // })
 
-function async(result) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            console.log(result);
-            resolve(reject);
-        }, 1000);
-    })
-}
+// function async(result) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             console.log(result);
+//             resolve(reject);
+//         }, 1000);
+//     })
+// }
 
-async(0).then(res => {
-    return async(res + 1);
-}).then(res => {
-    return async(res + 1);
-}) 
+// async(0).then(res => {
+//     return async(res + 1);
+// }).then(res => {
+//     return async(res + 1);
+// }) 
