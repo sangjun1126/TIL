@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background: #333;
+        color: #CCC;
+    }
+
+    .ex {
+        height: 20px;
+        width: 10px;
+        background: #fcdba1;
+    }
+</style>
+<body>
+    <h2>
+        setInterval vs rAF 애니메이션 부드러움 차이 알아보기
+    </h2>
+    <div class="ex interval"></div>
+    <span>setInterval</span>
+
+    <hr />
+    <div class="ex request"></div>
+    <span>requestAnimationFrame</span>
+
+    <br />
+    <button class="btn-start" onclick="onClick()">테스트 시작</button>
+
+    <script>
+        const intervalEl = document.querySelector('.interval');
+        const requestEl = document.querySelector('.request');
+
+        let intervalWidth = 10;
+        let requestWidth = 10;
+
+        function requestRender() {
+            requestEl.style.width = `${requestWidth}px`;
+            requestWidth += 10;
+
+            const id = requestAnimationFrame(requestRender);
+            if (requestWidth > window.innerWidth) {
+                cancelAnimationFrame(id);
+            }
+        }
+
+        function intervalRender() {
+            const id = setInterval(() => {
+                intervalEl.style.width = `${intervalWidth}px`;
+                intervalWidth += 10;
+
+                if (intervalWidth > window.innerWidth) {
+                    clearInterval(id);
+                } 
+            }, 1000/60);
+        }
+
+        function onClick() {
+            intervalWidth = 10;
+            requestWidth = 10;
+
+            requestRender();
+            intervalRender();
+        }
+    </script>
+</body>
+</html>
