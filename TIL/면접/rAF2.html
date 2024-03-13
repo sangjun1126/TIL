@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    html {
+        height: 100%;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        margin: auto;
+    }
+
+    .rocket {
+        position: absolute;
+        width: 100%;
+        left: 50%;
+        bottom: 0;
+        margin-left: -50px;
+    }
+
+    .value {
+        margin-top: -5rem;
+        font-size: 7rem;
+        font-weight: 100;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <img class="rocket" src="https://www.freeiconspng.com/thumbs/rocket-png/rocket-png-1.png" alt="로켓 에니메이션">
+    <count class="value">0</count>
+    <button>다시 시작</button>
+
+    <script>
+        const rocket = document.querySelector('.rocket');
+        const value = document.querySelector('.value');
+        let yPos = 0;
+        let rafId;
+
+        function render() {
+            yPos += 2 // y 좌표 2 증가
+
+            rocket.style.transform = `translateY(${-yPos}px)`;
+            value.innerHTML = yPos;
+
+            if (yPos >= 500) {
+                cancelAnimationFrame(rafId);
+                return;
+            }
+
+            rafId = requestAnimationFrame(render);
+        }
+
+        requestAnimationFrame(render);
+
+        rocket.addEventListener('mouseover', () => {
+            cancelAnimationFrame(rafId);
+        })
+
+        rocket.addEventListener('mouseout', () => {
+            requestAnimationFrame(render);
+        });
+
+        document.querySelector('button').addEventListener('click', () => {
+            if (yPos >= 500) {
+                yPos = 0;
+                requestAnimationFrame(render);
+            }
+        })
+    </script>
+</body>
+</html>
